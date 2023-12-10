@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/index.css">
+    <script src="./assets/index.js"></script>
+    <title>Jogo da velha</title>
+</head>
+<body>
+    <div class="container text-center">
+        <div class="animate" id="resultado">
+            
+        </div>
+        <div class="radio-buttons">
+            <label>
+              <input type="radio" name="opcoes" value="dupla" class="opcoes" checked> Jogar em dupla
+            </label>
+            <label>
+              <input type="radio" name="opcoes" value="sozinho" class="opcoes"> Jogar sozinho 
+            </label>
+        </div>
+        <div class="container-form d-flex flex-row w-50 m-auto">
+            <div class="col-8 p-0 pr-3">
+                <input type="number" id="matrixSize" min="3" max="10" class="form-control w-100">
+            </div>
+            <div class="col-4 p-0">
+                <button class="btn btn-primary w-100" id="nova_partida">Nova partida</button>
+            </div>
+        </div>
+        <section>
+            <div id="matrizContainer" class="mt-3"></div>
+        </section>
+    </div>
+</body>
+</html>
