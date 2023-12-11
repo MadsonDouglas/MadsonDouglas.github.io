@@ -12,7 +12,7 @@ function iniciar_matriz(matrix_size) {
     // Limpe o conteúdo anterior
     matriz_container.innerHTML = '';
 
-
+    
     matriz_container.style.width = largura_content[matrix_size];
     const matrix = criar_matriz(matrix_size);
     paint_matrix(matrix, matriz_container);
@@ -22,9 +22,10 @@ function iniciar_matriz(matrix_size) {
 }
 
 function validar_input() {
+    // reguperando dados do input
     const matrix_size_input = document.getElementById("matrixSize");
     const matrix_size = parseInt(matrix_size_input.value, 10);
-
+    //fazendo algumas validações para ver se o tamanho da matriz está entre 3 e 10
     if (isNaN(matrix_size) || matrix_size < 3 || matrix_size > 10) {
         alert("Por favor, insira um número válido entre 3 e 10.");
         return;
@@ -34,6 +35,7 @@ function validar_input() {
 }
 
 function criar_matriz(size) {
+    //cria uma matriz quadrada para o jogo baseado nas dimensões
     const matrix = [];
     for (let i = 0; i < size; i++) {
         const row = Array.from({ length: size }, () => '');
@@ -43,6 +45,7 @@ function criar_matriz(size) {
 }
 
 function paint_matrix(matrix, container) {
+    // desenha a matriz na tela criando elementos div
     for (let i = 0; i < matrix.length; i++) {
         let div = document.createElement('div');
         div.className = `linha l${i}`;
@@ -65,6 +68,7 @@ function paint_matrix(matrix, container) {
 }
 
 function adicionar_eventos_clique(matrix, container) {
+    //percorrendo cada celula da matriz e adicionando um evento de clique, assim quando uma celula é clicada conseguimos saber exatamente qual foi
     const cells = container.getElementsByClassName("cell");
 
     for (let i = 0; i < cells.length; i++) {
@@ -90,7 +94,7 @@ function adicionar_eventos_clique(matrix, container) {
 }
 
 function verificar_vencedor(matrix) {
-    // Verificar linhas e colunas
+    // Verificar linhas e colunas e diagonais para ver se foi preenchida totalmente com O ou X
     for (let i = 0; i < matrix.length; i++) {
         if (matrix[i].every(cell => cell === 'X') || matrix.every(row => row[i] === 'X')) {
             return 'X';
@@ -112,6 +116,7 @@ function verificar_vencedor(matrix) {
 }
 
 function verificar_fim_de_jogo(matrix) {
+    // a cada jogada é verificado se tem um vencedor, essa função é responsavel por desenha o resultado em tela
     const vencedor = verificar_vencedor(matrix);
     let resultado = document.querySelector('#resultado');
     if (vencedor) {
@@ -128,6 +133,7 @@ function verificar_fim_de_jogo(matrix) {
 }
 
 function realizar_jogada(cell, matrix, row, col, content) {
+    //adiciona a jogada na matriz
     const texto = document.createElement("div");
     const span = document.createElement('span');
 
@@ -166,6 +172,7 @@ function realizar_jogada_aleatoria(matrix) {
 }
 
 function resetar_jogo(matrix) {
+    //limpa a matriz para começar outro jogo do zero
     let resultado = document.querySelector('#resultado');
     resultado.style.display = 'none';
     matrix.forEach(row => row.fill(''));
@@ -177,7 +184,7 @@ function resetar_jogo(matrix) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
+    // pega o modo de jogo dupla ou individual
     const opcoes = document.querySelectorAll('.radio-buttons input[name="opcoes"]');
 
     opcoes.forEach(button => {
@@ -186,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
             modo = value
         });
     });
-
+    //inicia uma nova partida
     let nova_partida = document.getElementById('nova_partida');
 
     nova_partida.addEventListener('click', function (event) {
